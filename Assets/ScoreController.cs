@@ -25,10 +25,10 @@ public class ScoreController : MonoBehaviour {
     // Use this for initialization
     void Start () {
 
+        this.scoretext = GameObject.Find("Score");
         score = 0;
         SetScore();   //初期スコアを代入して表示
 
-        this.scoretext = GameObject.Find("Score");
 
 
     }
@@ -55,10 +55,25 @@ public class ScoreController : MonoBehaviour {
 
         }
 
+        if (collision.gameObject.tag == "LargeCloudTag")
+        {
+            score = score + score_largecloud;
+            SetScore();
+
+        }
+
+        if (collision.gameObject.tag == "SmallCloudTag")
+        {
+            score = score + score_smallcloud;
+            SetScore();
+
+
+        }
+
     }
 
     void SetScore()
     {
-        this.scoretext.GetComponent<Text>().text = "score";
+        this.scoretext.GetComponent<Text>().text = score.ToString();
     }
 }
